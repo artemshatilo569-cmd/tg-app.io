@@ -1,10 +1,11 @@
-const user = window.Telegram?.WebApp?.initDataUnsafe?.user;
+function navigate(button) {
+    const page = button.dataset.page;
 
-if (user) {
-  document.body.innerHTML = `
-    <p>ID: ${user.id}</p>
-    <p>Ник: @${user.username || 'нет никнейма'}</p>
-  `;
-} else {
-  document.body.innerHTML = '<p>Открой в Telegram</p>';
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    button.classList.add('active');
+
+    window.location.href = page;
 }
