@@ -1,9 +1,72 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlazeGift.up</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="static/css/blazeGift-case.css">
 </head>
 <body>
-  <script src="test.js"></script>
+
+<nav class="nav-bar" role="navigation" aria-label="Главное меню">
+
+    <button class="nav-item"
+            data-page="blazeGift-giveaways.html"
+            onclick="navigate(this)"
+            aria-label="Розыгрыши">
+        <div class="icon-wrap">
+            <i class="ti ti-gift"></i>
+            <span class="badge"></span>
+        </div>
+        <span>Розыгрыши</span>
+    </button>
+
+    <button class="nav-item"
+            data-page="blazeGift-earn.html"
+            onclick="navigate(this)"
+            aria-label="Заработать">
+        <div class="icon-wrap">
+            <i class="ti ti-coin"></i>
+        </div>
+        <span>Заработать</span>
+    </button>
+
+    <button class="nav-item active"
+            data-page="blazeGift-games.html"
+            onclick="navigate(this)"
+            aria-label="Игры">
+        <div class="icon-wrap">
+            <i class="ti ti-home"></i>
+        </div>
+        <span>Игры</span>
+    </button>
+
+    <button class="nav-item"
+            data-page="blazeGift-leaderboard.html"
+            onclick="navigate(this)"
+            aria-label="Лидерборд">
+        <div class="icon-wrap">
+            <i class="ti ti-trophy"></i>
+        </div>
+        <span>Лидерборд</span>
+    </button>
+
+    <button class="nav-item"
+            data-page="blazeGift-profile.html"
+            onclick="navigate(this)"
+            aria-label="Профиль">
+        <div class="icon-wrap">
+            <i class="ti ti-user"></i>
+        </div>
+        <span>Профиль</span>
+    </button>
+
+</nav>
+
+<script src="test.js"></script>
+
 </body>
 </html>
