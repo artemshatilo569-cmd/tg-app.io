@@ -37,11 +37,9 @@
             box-shadow: none !important;
         }
 
-        /* ── ОТСТУП сверху = высота шапки Telegram ── */
         .page-content {
-            padding-bottom: 84px;
-            /* padding-top ставится через JS после инициализации TG */
-            padding-top: var(--tg-safe-top, 0px);
+            padding-top: 56px;
+            padding-bottom: 90px;
             width: 100%;
         }
 
@@ -295,7 +293,7 @@
             background: #141414;
             border-top: 0.5px solid #242424;
             border-radius: 20px 20px 0 0;
-            padding: 8px 0 max(10px, env(safe-area-inset-bottom));
+            padding: 8px 0 max(16px, env(safe-area-inset-bottom));
             z-index: 100;
         }
 
@@ -462,35 +460,8 @@
 </nav>
 
 <script>
-// ── TELEGRAM INIT ──
-const tg = window.Telegram?.WebApp;
-
-if (tg) {
-    // Разворачиваем на весь экран
-    tg.expand();
-
-    // Убираем нативную кнопку "Закрыть" — она мешает нашим кнопкам
-    // Вместо неё ничего не показываем (BackButton тоже скрываем)
-    if (tg.BackButton) tg.BackButton.hide();
-
-    // Отступ сверху = высота шапки Telegram (header)
-    // tg.contentSafeAreaInsets появился в TG WebApp 8.0+
-    const topInset = tg.contentSafeAreaInsets?.top
-                  ?? tg.safeAreaInsets?.top
-                  ?? 0;
-
-    if (topInset > 0) {
-        document.getElementById('pageContent').style.paddingTop = topInset + 'px';
-    }
-
-    // Слушаем изменения (поворот экрана, разворот)
-    tg.onEvent('viewportChanged', () => {
-        const top = tg.contentSafeAreaInsets?.top ?? tg.safeAreaInsets?.top ?? 0;
-        document.getElementById('pageContent').style.paddingTop = top + 'px';
-    });
-}
-
 // ── ПОЛЬЗОВАТЕЛЬ ──
+const tg = window.Telegram?.WebApp;
 const tgUser = tg?.initDataUnsafe?.user;
 const infoEl = document.getElementById('user-info');
 const iconEl = document.getElementById('user-icon');
