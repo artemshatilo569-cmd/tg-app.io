@@ -12,16 +12,13 @@
     var isInMiniApp = tg && tg.initData && tg.initData.length > 0;
     
     if (!isInMiniApp) {
-        var ua = navigator.userAgent || '';
-        var isTgBrowser = ua.indexOf('Telegram') !== -1 || ua.indexOf('TelegramBot') !== -1;
+        // Пробуем открыть Mini App через tg:// сразу
+        window.location.href = "tg://resolve?domain=Apishirp_bot&appname=Test&startapp=open";
         
-        if (isTgBrowser) {
-            // Telegram браузер — используем tg:// deep link
-            window.location.replace("tg://resolve?domain=Apishirp_bot&appname=Test&startapp=open");
-        } else {
-            // Обычный браузер
-            window.location.replace("https://t.me/Apishirp_bot?startapp");
-        }
+        // Если не сработало через 1.5 сек — редирект через t.me
+        setTimeout(function() {
+            window.location.replace("https://t.me/Apishirp_bot/Test");
+        }, 1500);
     }
 })();
 </script>
