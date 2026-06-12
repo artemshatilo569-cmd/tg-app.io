@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BlazeGift.up</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
@@ -86,15 +85,24 @@
             overflow: hidden;
             user-select: none;
         }
-        .icon-btn:hover  { background: #2a2a2a; }
-        .icon-btn:focus  { background: #1e1e1e !important; }
+        .icon-btn:hover   { background: #2a2a2a; }
+        .icon-btn:active,
+        .icon-btn:focus   { transform: scale(0.90); background: #1e1e1e !important; }
 
+        .flag-emoji {
+            font-size: 22px;
+            line-height: 1;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .flag-wave {
             width: 28px;
-            height: 20px;
+            height: 19px;
             border-radius: 2px;
             overflow: hidden;
-            pointer-events: none;
+            display: block;
         }
         .flag-wave img {
             width: 100%;
@@ -105,21 +113,11 @@
             transform-origin: left center;
         }
         @keyframes flagWave {
-            0%   { transform: skewY(0deg) scaleX(1); }
-            25%  { transform: skewY(2deg) scaleX(1.03); }
-            50%  { transform: skewY(0deg) scaleX(1); }
-            75%  { transform: skewY(-2deg) scaleX(1.03); }
-            100% { transform: skewY(0deg) scaleX(1); }
-        }
-        .icon-btn:active { transform: scale(0.90); }
-
-        .flag-emoji {
-            font-size: 22px;
-            line-height: 1;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            0%   { transform: skewY(0deg)    scaleX(1);    }
+            25%  { transform: skewY(2deg)    scaleX(1.03); }
+            50%  { transform: skewY(0deg)    scaleX(1);    }
+            75%  { transform: skewY(-2deg)   scaleX(1.03); }
+            100% { transform: skewY(0deg)    scaleX(1);    }
         }
         .icon-btn i { font-size: 20px; pointer-events: none; }
 
@@ -517,15 +515,12 @@ function toggleLanguage() {
     document.querySelectorAll('[data-ru]').forEach(el => {
         el.textContent = el.getAttribute('data-' + currentLang);
     });
-}
-
-// Ripple на кнопке флага
-document.getElementById('langBtn').addEventListener('click', () => {
+    // Ripple на кнопке флага
     const ripple = document.createElement('span');
     ripple.className = 'ripple';
     document.getElementById('langBtn').appendChild(ripple);
     ripple.addEventListener('animationend', () => ripple.remove());
-});
+}
 
 // ── ЗВУК ──
 const soundStates = [
