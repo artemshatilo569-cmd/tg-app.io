@@ -78,7 +78,7 @@
             justify-content: center;
             padding: 0;
             outline: none !important;
-            transition: transform 0.1s, background 0.15s;
+            transition: transform 0.1s;
             -webkit-tap-highlight-color: transparent !important;
             color: #888;
             position: relative;
@@ -86,8 +86,9 @@
             user-select: none;
         }
         .icon-btn:hover   { background: #2a2a2a; }
-        .icon-btn:active,
-        .icon-btn:focus   { transform: scale(0.90); background: #1e1e1e !important; }
+        .icon-btn:active  { transform: scale(0.90); background: #1e1e1e !important; }
+        .icon-btn:focus,
+        .icon-btn:focus-visible { background: #1e1e1e !important; outline: none !important; }
 
         .flag-emoji {
             font-size: 22px;
@@ -96,28 +97,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .flag-wave {
-            width: 28px;
-            height: 19px;
-            border-radius: 2px;
-            overflow: hidden;
-            display: block;
-        }
-        .flag-wave img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            animation: flagWave 2s ease-in-out infinite;
-            transform-origin: left center;
-        }
-        @keyframes flagWave {
-            0%   { transform: skewY(0deg)    scaleX(1);    }
-            25%  { transform: skewY(2deg)    scaleX(1.03); }
-            50%  { transform: skewY(0deg)    scaleX(1);    }
-            75%  { transform: skewY(-2deg)   scaleX(1.03); }
-            100% { transform: skewY(0deg)    scaleX(1);    }
         }
         .icon-btn i { font-size: 20px; pointer-events: none; }
 
@@ -395,7 +374,7 @@
         <div class="side-btns">
             <button id="langBtn" class="icon-btn" onclick="toggleLanguage()" aria-label="Язык">
                 <span id="flagEmoji" class="flag-emoji">
-                    <span class="flag-wave"><img src="https://flagcdn.com/w80/ru.png" alt="Russia"></span>
+                    <img src="https://flagcdn.com/16x12/ru.png" width="18" height="14" alt="Russia">
                 </span>
             </button>
             <button class="icon-btn" id="soundBtn" aria-label="Звук 0%">
@@ -505,8 +484,8 @@ if (tgUser) {
 // ── ЯЗЫК ──
 let currentLang = 'ru';
 const flags = {
-    ru: `<span class="flag-wave"><img src="https://flagcdn.com/w80/ru.png" alt="Russia"></span>`,
-    en: `<span class="flag-wave"><img src="https://flagcdn.com/w80/us.png" alt="USA"></span>`
+    ru: `<img src="https://flagcdn.com/16x12/ru.png" width="18" height="14" alt="Russia">`,
+    en: `<img src="https://flagcdn.com/16x12/us.png" width="18" height="14" alt="USA">`
 };
 
 function toggleLanguage() {
@@ -515,7 +494,6 @@ function toggleLanguage() {
     document.querySelectorAll('[data-ru]').forEach(el => {
         el.textContent = el.getAttribute('data-' + currentLang);
     });
-    // Ripple на кнопке флага
     const ripple = document.createElement('span');
     ripple.className = 'ripple';
     document.getElementById('langBtn').appendChild(ripple);
